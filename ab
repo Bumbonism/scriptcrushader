@@ -1,8 +1,3 @@
--- Gui to Lua
--- Version: 3.2
-
--- Instances:
-
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -22,6 +17,7 @@ local UICorner_7 = Instance.new("UICorner")
 --Properties:
 
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.ResetOnSpawn = false
 
 Frame.Parent = ScreenGui
@@ -29,25 +25,24 @@ Frame.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
 Frame.BorderSizePixel = 0
 Frame.Position = UDim2.new(0.210649967, 0, 0.487593055, 0)
 Frame.Size = UDim2.new(0, 445, 0, 110)
-
 UICorner.Parent = Frame
-
 Title.Name = "Title"
 Title.Parent = Frame
 Title.BackgroundColor3 = Color3.fromRGB(79, 79, 79)
 Title.BackgroundTransparency = 1.000
 Title.BorderSizePixel = 0
+Title.Position = UDim2.new(0.0202247184, 0, 0.0346320346, 0)
+Title.Size = UDim2.new(0, 429, 0, 50)
 Title.Position = UDim2.new(0.195505619, 0, 0.0346319042, 0)
 Title.Size = UDim2.new(0, 271, 0, 50)
 Title.Font = Enum.Font.Antique
+Title.Text = "Jojo: Crusaders' Heaven"
 Title.Text = "Crushader Heaven"
 Title.TextColor3 = Color3.fromRGB(154, 6, 16)
 Title.TextScaled = true
 Title.TextSize = 14.000
 Title.TextWrapped = true
-
 UICorner_2.Parent = Title
-
 Accessory.Name = "Accessory"
 Accessory.Parent = Frame
 Accessory.BackgroundColor3 = Color3.fromRGB(71, 71, 71)
@@ -59,7 +54,15 @@ Accessory.TextColor3 = Color3.fromRGB(255, 255, 255)
 Accessory.TextScaled = true
 Accessory.TextSize = 14.000
 Accessory.TextWrapped = true
+UICorner_3.Parent = Accessory
 
+Accessory.MouseButton1Click:Connect(function()
+	local args = {
+		[1] = "Coin"
+	}
+
+	workspace.Jotaro6.Jotaro:FireServer(unpack(args))
+end)
 UICorner_3.Parent = Accessory
 
 Coin.Name = "Coin"
@@ -73,7 +76,11 @@ Coin.TextColor3 = Color3.fromRGB(255, 255, 255)
 Coin.TextScaled = true
 Coin.TextSize = 14.000
 Coin.TextWrapped = true
+UICorner_4.Parent = Coin
 
+Coin.MouseButton1Click:Connect(function()
+workspace.CoinExchange.Coin:FireServer()
+end)
 UICorner_4.Parent = Coin
 
 Normalonetime.Name = "Normalonetime"
@@ -87,7 +94,11 @@ Normalonetime.TextColor3 = Color3.fromRGB(255, 255, 255)
 Normalonetime.TextScaled = true
 Normalonetime.TextSize = 14.000
 Normalonetime.TextWrapped = true
+UICorner_5.Parent = Normalonetime
 
+Normalonetime.MouseButton1Click:Connect(function()
+game:GetService("ReplicatedStorage").ItemEvent.StandArrow:FireServer()
+end)
 UICorner_5.Parent = Normalonetime
 
 Reset.Name = "Reset"
@@ -101,7 +112,11 @@ Reset.TextColor3 = Color3.fromRGB(255, 255, 255)
 Reset.TextScaled = true
 Reset.TextSize = 14.000
 Reset.TextWrapped = true
+UICorner_6.Parent = Reset
 
+Reset.MouseButton1Click:Connect(function()
+workspace.Pucci.Pucci:FireServer()
+end)
 UICorner_6.Parent = Reset
 
 Weirdonetime.Name = "Weirdonetime"
@@ -115,52 +130,23 @@ Weirdonetime.TextColor3 = Color3.fromRGB(255, 243, 74)
 Weirdonetime.TextScaled = true
 Weirdonetime.TextSize = 14.000
 Weirdonetime.TextWrapped = true
+UICorner_7.Parent = Weirdonetime
 
+Weirdonetime.MouseButton1Click:Connect(function()
+game:GetService("ReplicatedStorage").ItemEvent.WeirdArrow:FireServer()
+end)
 UICorner_7.Parent = Weirdonetime
 
 -- Scripts:
 
+local function VYYNM_fake_script() -- Frame.Drag 
 local function GTOYZ_fake_script() -- Frame.Drag 
 	local script = Instance.new('LocalScript', Frame)
 
 	local UserInputService = game:GetService("UserInputService")
-	
-	local gui = script.Parent
-	
-	local dragging
-	local dragInput
-	local dragStart
-	local startPos
-	
-	local function update(input)
-		local delta = input.Position - dragStart
-		gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-	end
-	
-	gui.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-			dragging = true
-			dragStart = input.Position
-			startPos = gui.Position
-			
-			input.Changed:Connect(function()
-				if input.UserInputState == Enum.UserInputState.End then
-					dragging = false
-				end
-			end)
-		end
-	end)
-	
-	gui.InputChanged:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-			dragInput = input
-		end
-	end)
-	
-	UserInputService.InputChanged:Connect(function(input)
-		if input == dragInput and dragging then
-			update(input)
+@@ -175,4 +164,4 @@ local function VYYNM_fake_script() -- Frame.Drag
 		end
 	end)
 end
+coroutine.wrap(VYYNM_fake_script)()
 coroutine.wrap(GTOYZ_fake_script)()

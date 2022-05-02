@@ -22,7 +22,6 @@ local UICorner_7 = Instance.new("UICorner")
 --Properties:
 
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.DisplayOrder = 200
 ScreenGui.ResetOnSpawn = false
 
 Frame.Parent = ScreenGui
